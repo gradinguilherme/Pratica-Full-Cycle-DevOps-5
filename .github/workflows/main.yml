@@ -22,8 +22,9 @@ jobs:
       - name: Generate Coverage Report
         run: python -m coverage report
   
-  test-job2:
+  build-job:
     runs-on: ubuntu-latest
     steps:
-      - name: SAST Security Scan
-        run: echo "Executando Static Application Security Testing (SAST)..."
+      - name: Saudação do Usuário
+        # No GitHub, a variável equivalente ao $GITLAB_USER_LOGIN é ${{ github.actor }}
+        run: echo "Olá, ${{ github.actor }}!"
