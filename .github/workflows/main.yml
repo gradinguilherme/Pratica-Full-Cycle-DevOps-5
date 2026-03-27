@@ -1,6 +1,6 @@
 name: CI Pipeline
 
-on: [push] # Executa a cada push no repositório [cite: 56]
+on: [push] # Executa a cada push no repositório
 
 jobs:
   unit-tests:
@@ -22,9 +22,15 @@ jobs:
       - name: Generate Coverage Report
         run: python -m coverage report
   
-  build-job:
+  deploy-prod-job:
     runs-on: ubuntu-latest
+    environment: production        # Ativa a necessidade de aprovação manual
     steps:
-      - name: Saudação do Usuário
-        # No GitHub, a variável equivalente ao $GITLAB_USER_LOGIN é ${{ github.actor }}
-        run: echo "Olá, ${{ github.actor }}!"
+      - name: Starting deployment
+        run: echo "Deploying branch ${{ github.ref_name }} to production..." 
+        
+      - name: Simulate deployment time
+        run: sleep 20 # Simulates a 20-second process
+        
+      - name: Conclusion
+        run: echo "Deployment completed successfully!" 
